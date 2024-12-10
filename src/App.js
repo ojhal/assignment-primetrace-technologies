@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LoginPage from "./LoginPage";
+import QuoteListPage from "./QuoteListPage";
+import QuoteCreationPage from "./QuoteCreationPage";
 
 function App() {
+  const handleLogin = (token) => {
+    console.log("Logged in with token:", token);
+    // You can also store the token in state or localStorage here
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
+        <Route path="/quotes" element={<QuoteListPage />} />
+        <Route path="/create-quote" element={<QuoteCreationPage />} />
+      </Routes>
+    </Router>
   );
 }
 
