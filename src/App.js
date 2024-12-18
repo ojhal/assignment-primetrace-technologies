@@ -1,24 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LoginPage from "./LoginPage";
-import QuoteListPage from "./QuoteListPage";
-import QuoteCreationPage from "./QuoteCreationPage";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import QuoteListPage from './pages/QuoteListPage';
+import QuoteCreationPage from './pages/QuoteCreationPage';
 
-function App() {
-  const handleLogin = (token) => {
-    console.log("Logged in with token:", token);
-    // You can also store the token in state or localStorage here
-  };
-
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/quotes" element={<QuoteListPage />} />
         <Route path="/create-quote" element={<QuoteCreationPage />} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
