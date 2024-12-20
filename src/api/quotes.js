@@ -1,4 +1,16 @@
 import axios from 'axios';
+// ../api/quotes.js
+export const fetchQuotes = async (token, limit = 20, offset = 0) => {
+  const response = await fetch(`/api/quotes?limit=${limit}&offset=${offset}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch quotes');
+  }
+  return await response.json();
+};
 
 export const createQuote = async (token, text, mediaUrl) => {
   try {
